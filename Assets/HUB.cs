@@ -12,6 +12,10 @@ public class HUB : MonoBehaviour
     [SerializeField] private Slider _slider = null;
 
     public UnityEvent<float> OnSliderValueChanged = new UnityEvent<float>();
+
+
+    // to move
+    int _score = 0;
     #endregion
 
     #region Methods
@@ -31,9 +35,10 @@ public class HUB : MonoBehaviour
         OnSliderValueChanged.Invoke(value);
     }
 
-    public void UpdateScore(int score)
+    public void UpdateScore()
     {
-        _scoreText.text = score.ToString();
+        ++_score;
+        _scoreText.text = _score.ToString();
     }
     #endregion
 }

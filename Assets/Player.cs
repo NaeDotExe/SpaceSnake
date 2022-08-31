@@ -6,6 +6,8 @@ using UnityEngine.Events;
 public class Player : MonoBehaviour
 {
     #region Attributes
+    [SerializeField] private GameObject _tailElement = null;
+
     private PlayerController _playerController = null;
     #endregion
 
@@ -16,6 +18,7 @@ public class Player : MonoBehaviour
     #region Events
     public UnityEvent OnStart = new UnityEvent();
     public UnityEvent OnDeath = new UnityEvent();
+    public UnityEvent OnCollectiblePicked = new UnityEvent();
     #endregion
 
     private void Start()
@@ -27,13 +30,29 @@ public class Player : MonoBehaviour
             return;
         }
     }
+
+    private void AddTailElement()
+    {
+
+    }
     private void Kill()
     {
         OnDeath.Invoke();
     }
+    private void CollectiblePicked(Collectible collectible)
+    {
+        collectible.Kill();
+
+        _playerController.IncrementSpeed();
+        AddTailElement();
+
+        OnCollectiblePicked.Invoke();
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("AAAUUGGHH");
+
         if (collision.gameObject.tag != "Obstacle")
         {
             return;
@@ -43,10 +62,14 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("REEEEEEEE");
+
         if (other.tag == "Collectible")
         {
             return;
         }
+
+        Debug.Log("Collectible");
 
         Collectible collectible = other.gameObject.GetComponent<Collectible>();
         if (collectible == null)
@@ -55,6 +78,6 @@ public class Player : MonoBehaviour
             return;
         }
 
-        _playerController.IncrementSpeed();
+        CollectiblePicked(collectible);
     }
 }

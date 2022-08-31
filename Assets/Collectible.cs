@@ -15,4 +15,8 @@ public class Collectible : MonoBehaviour
     {
         
     }
+    public void Kill()
+    {
+        Destroy(gameObject);
+    }
 }
