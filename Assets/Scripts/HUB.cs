@@ -11,11 +11,10 @@ public class HUB : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _scoreText = null;
     [SerializeField] private Slider _slider = null;
 
+    [Space]
+    [SerializeField] private ScoreManager _scoreManager = null;
+
     public UnityEvent<float> OnSliderValueChanged = new UnityEvent<float>();
-
-
-    // to move
-    int _score = 0;
     #endregion
 
     #region Methods
@@ -34,11 +33,11 @@ public class HUB : MonoBehaviour
     {
         OnSliderValueChanged.Invoke(value);
     }
-
     public void UpdateScore()
     {
-        ++_score;
-        _scoreText.text = _score.ToString();
+        int score = _scoreManager.Score;
+
+        _scoreText.text = score.ToString();
     }
     #endregion
 }
