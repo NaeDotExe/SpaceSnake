@@ -56,5 +56,10 @@ public class PlayerController : MonoBehaviour
     {
         _currentSpeed += _speedIncrementValue;
     }
+    public void Stop()
+    {
+        _currentSpeed = 0;
+        _isMovementAllowed = false;
+    }
     #endregion
 }

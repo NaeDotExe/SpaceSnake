@@ -5,9 +5,10 @@ using UnityEngine;
 public class Platform : MonoBehaviour
 {
     #region Attributes
-    [SerializeField] private float _delayBeforeSpawningObstacles = 0.5f;
+    [SerializeField] private bool _forceDisableObstacles = false;
 
     [Space]
+    [SerializeField] private float _delayBeforeSpawningObstacles = 0.5f;
     [SerializeField] private List<Obstacle> _obstacles = new List<Obstacle>();
 
     private bool _showObstacles = true;
@@ -34,14 +35,31 @@ public class Platform : MonoBehaviour
     #region Methods
     private void Start()
     {
-        if (_obstacles.Count == 0)
+        if (_forceDisableObstacles)
         {
-            _showObstacles = true;
+            foreach (Obstacle obstacle in _obstacles)
+            {
+                obstacle.gameObject.SetActive(false);
+            }
+
+            return;
         }
 
-        if (_showObstacles)
+        if (_obstacles.Count == 0)
+        {
+            _showObstacles = false;
+        }
+
+        if (_showObstacles )
         {
             StartCoroutine(ShowObstaclesCoroutine());
+        }
+        else
+        {
+            foreach (Obstacle obstacle in _obstacles)
+            {
+                obstacle.gameObject.SetActive(false);
+            }
         }
     }
 

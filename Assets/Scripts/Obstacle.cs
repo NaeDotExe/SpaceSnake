@@ -11,6 +11,6 @@ public class Obstacle : MonoBehaviour
 
     public void Spawn()
     {
-
+        // play anim
     }
 }

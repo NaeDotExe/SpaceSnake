@@ -51,14 +51,11 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("AAAUUGGHH");
-
-        if (collision.gameObject.tag != "Obstacle")
+        if (collision.gameObject.tag == "Obstacle")
         {
-            return;
+        Kill();
         }
 
-        Kill();
     }
     private void OnTriggerEnter(Collider other)
     {
