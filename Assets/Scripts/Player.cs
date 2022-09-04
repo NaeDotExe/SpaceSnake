@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     #region Attributes
     [SerializeField] private GameObject _tailElement = null;
 
+    private ParticleSystem _particleSystem = null;
     private PlayerController _playerController = null;
     #endregion
 
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour
     public UnityEvent OnCollectiblePicked = new UnityEvent();
     #endregion
 
+    #region Methods
     private void Start()
     {
         _playerController = GetComponent<PlayerController>();
@@ -29,15 +31,23 @@ public class Player : MonoBehaviour
             Debug.LogError("No Component PlayerController found.");
             return;
         }
+
+        _particleSystem = GetComponent<ParticleSystem>();
+        if (_particleSystem == null)
+        {
+            Debug.LogError("No Component ParticleSystem found.");
+            return;
+        }
     }
 
+    private void Kill()
+    {
+        _playerController.Stop();
+        OnDeath.Invoke();
+    }
     private void AddTailElement()
     {
 
-    }
-    private void Kill()
-    {
-        OnDeath.Invoke();
     }
     private void CollectiblePicked(Collectible collectible)
     {
@@ -46,6 +56,8 @@ public class Player : MonoBehaviour
         _playerController.IncrementSpeed();
         AddTailElement();
 
+        _particleSystem.Play();
+
         OnCollectiblePicked.Invoke();
     }
 
@@ -53,28 +65,22 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Obstacle")
         {
-        Kill();
+            Kill();
         }
-
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("REEEEEEEE");
-
         if (other.tag == "Collectible")
         {
-            return;
+            Collectible collectible = other.gameObject.GetComponent<Collectible>();
+            if (collectible == null)
+            {
+                Debug.LogError("No Component Collectible found!");
+                return;
+            }
+
+            CollectiblePicked(collectible);
         }
-
-        Debug.Log("Collectible");
-
-        Collectible collectible = other.gameObject.GetComponent<Collectible>();
-        if (collectible == null)
-        {
-            Debug.LogError("No Component Collectible found!");
-            return;
-        }
-
-        CollectiblePicked(collectible);
     }
+    #endregion
 }

@@ -33,13 +33,38 @@ public class EnvironmentGenerator : MonoBehaviour
 
     private void SpawnElement()
     {
-        Debug.Log("Spawn");
+        // change to pool
 
         int id = Random.Range(0, _prefabs.Count - 1);
 
-        GameObject obj = Instantiate(_prefabs[id], _parent/*Vector3.forward * _lastZ, Quaternion.identit*/);
+        GameObject selectedPrefab = _prefabs[id];
+        if (selectedPrefab == null)
+        {
+            Debug.LogError("Selected Prefab is null!");
+            return;
+        }
 
-        obj.transform.position = Vector3.forward * _lastZ;
+        Platform platform = Instantiate(selectedPrefab, _parent).GetComponent<Platform>();
+        if (platform == null)
+        {
+            Debug.LogError("Failed to instantiate platform.");
+            return;
+        }
+
+        bool showObstacles = false;
+        int proba = Random.Range(0, 2);
+
+        // 2/3 chances of having obstacles
+        if (proba > 0)
+        {
+            showObstacles = true;
+        }
+
+        platform.transform.position = Vector3.forward * _lastZ;
+        if (showObstacles)
+        {
+            platform.ShowObstacles();
+        }
 
         _lastZ += _distance;
     }

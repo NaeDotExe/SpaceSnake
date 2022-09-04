@@ -7,8 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     #region Attributes
     [SerializeField] private float _startSpeed = 10f;
-    [SerializeField] private float _speedIncrementValue = 10f;
-
+    [SerializeField] private float _multiplier = 1.1f;
 
     [Space]
     [SerializeField] private HUB _hub = null;
@@ -54,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
     public void IncrementSpeed()
     {
-        _currentSpeed += _speedIncrementValue;
+        _currentSpeed += _multiplier;
     }
     public void Stop()
     {

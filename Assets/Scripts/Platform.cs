@@ -5,62 +5,21 @@ using UnityEngine;
 public class Platform : MonoBehaviour
 {
     #region Attributes
-    [SerializeField] private bool _forceDisableObstacles = false;
-
-    [Space]
     [SerializeField] private float _delayBeforeSpawningObstacles = 0.5f;
     [SerializeField] private List<Obstacle> _obstacles = new List<Obstacle>();
-
-    private bool _showObstacles = true;
-    #endregion
-
-    #region Properties
-    public bool ShowObstacles
-    {
-        get { return _showObstacles; }
-        set
-        {
-            if (_obstacles.Count == 0)
-            {
-                _showObstacles = false;
-            }
-            else
-            {
-                _showObstacles = value;
-            }
-        }
-    }
     #endregion
 
     #region Methods
     private void Start()
     {
-        if (_forceDisableObstacles)
+        foreach (Obstacle obstacle in _obstacles)
         {
-            foreach (Obstacle obstacle in _obstacles)
-            {
-                obstacle.gameObject.SetActive(false);
-            }
-
-            return;
+            obstacle.gameObject.SetActive(false);
         }
-
-        if (_obstacles.Count == 0)
-        {
-            _showObstacles = false;
-        }
-
-        if (_showObstacles )
-        {
-            StartCoroutine(ShowObstaclesCoroutine());
-        }
-        else
-        {
-            foreach (Obstacle obstacle in _obstacles)
-            {
-                obstacle.gameObject.SetActive(false);
-            }
-        }
+    }
+    public void ShowObstacles()
+    {
+        StartCoroutine(ShowObstaclesCoroutine());
     }
 
     private IEnumerator ShowObstaclesCoroutine()

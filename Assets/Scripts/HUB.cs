@@ -13,7 +13,13 @@ public class HUB : MonoBehaviour
 
     [Space]
     [SerializeField] private ScoreManager _scoreManager = null;
+    #endregion
 
+    #region Properties
+
+    #endregion
+
+    #region Events
     public UnityEvent<float> OnSliderValueChanged = new UnityEvent<float>();
     #endregion
 
