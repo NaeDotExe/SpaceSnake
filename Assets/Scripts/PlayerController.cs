@@ -55,6 +55,10 @@ public class PlayerController : MonoBehaviour
     {
         _currentSpeed += _multiplier;
     }
+    public void DecreaseSpeed(float divider)
+    {
+        _currentSpeed /= divider;
+    }
     public void Stop()
     {
         _currentSpeed = 0;

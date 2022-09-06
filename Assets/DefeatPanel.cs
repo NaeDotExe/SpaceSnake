@@ -8,14 +8,18 @@ using TMPro;
 public class DefeatPanel : MonoBehaviour
 {
     #region Attributes
-    [SerializeField] private Image _restartImage = null;
+    [SerializeField] private Button _button = null;
     [SerializeField] private TextMeshProUGUI _highScoreText = null;
+
+    [Space]
+    [SerializeField] private string _highScoreFormat = "Nouveau Record :\n {0}";
 
     [Space]
     [SerializeField] private float _allowedTime = 5f;
 
     private bool _allowTimeUpdate = false;
     private float _elapsed = 0f;
+    private Image _restartImage = null;
     #endregion
 
     #region Properties
@@ -33,7 +37,11 @@ public class DefeatPanel : MonoBehaviour
     #region Methods
     private void Start()
     {
+        _restartImage = _button.image;
+
         _restartImage.fillAmount = 1;
+
+        //_button.onClick.AddListener(OnTimerEnded.Invoke);
     }
     private void Update()
     {
@@ -55,9 +63,11 @@ public class DefeatPanel : MonoBehaviour
         }
     }
 
-    public void ShowHighScore()
+    public void ShowHighScore(int value)
     {
         _highScoreText.gameObject.SetActive(true);
+
+        _highScoreText.text = string.Format(_highScoreFormat, value);
     }
     #endregion
 }

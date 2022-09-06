@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
+    #region Methods
     private void Start()
     {
 
@@ -13,4 +14,9 @@ public class Obstacle : MonoBehaviour
     {
         // play anim
     }
+    public virtual void Kill()
+    {
+        Destroy(gameObject);
+    }
+    #endregion
 }
