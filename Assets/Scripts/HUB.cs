@@ -53,11 +53,6 @@ public class HUB : MonoBehaviour
     }
     public void UpdateHighScore(int highScore)
     {
-        if (!_highScoreText.gameObject.activeInHierarchy)
-        {
-            _highScoreText.gameObject.SetActive(true);
-        }
-
         _highScoreText.text = string.Format(_highScoreFormat, highScore);
     }
     #endregion

@@ -24,7 +24,8 @@ public class Platform : MonoBehaviour
 
     private IEnumerator ShowObstaclesCoroutine()
     {
-        yield return new WaitForSeconds(_delayBeforeSpawningObstacles);
+        //yield return new WaitForSeconds(_delayBeforeSpawningObstacles);
+        yield return new WaitForEndOfFrame();
 
         foreach (Obstacle obstacle in _obstacles)
         {

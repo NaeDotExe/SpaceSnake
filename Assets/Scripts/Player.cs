@@ -105,10 +105,8 @@ public class Player : MonoBehaviour
         _body.Add(element);
     }
 
-    private void CollectiblePicked(Collectible collectible)
+    private void CollectiblePicked()
     {
-        collectible.Kill();
-
         ++_ammoCount;
 
         OnUpdateAmmo.Invoke(_ammoCount);
@@ -128,7 +126,7 @@ public class Player : MonoBehaviour
     public void ShootProjectile()
     {
         --_ammoCount;
-        if (_ammoCount <= 0)
+        if (_ammoCount < 0)
         {
             Debug.LogWarning("No More Ammo !");
             _ammoCount = 0;
@@ -147,7 +145,7 @@ public class Player : MonoBehaviour
             return;
         }
 
-        projectile.AddForce(Vector3.forward * _shootForce, ForceMode.Impulse);
+        projectile.AddForce(transform.forward * _shootForce, ForceMode.Impulse);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -161,14 +159,10 @@ public class Player : MonoBehaviour
     {
         if (other.tag == "Collectible")
         {
-            Collectible collectible = other.gameObject.GetComponent<Collectible>();
-            if (collectible == null)
-            {
-                Debug.LogError("No Component Collectible found!");
-                return;
-            }
+            Debug.Log("collectible!");
 
-            CollectiblePicked(collectible);
+            Destroy(other.gameObject);
+            CollectiblePicked();
         }
     }
     #endregion

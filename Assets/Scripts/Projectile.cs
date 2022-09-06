@@ -13,19 +13,12 @@ public class Projectile : MonoBehaviour
     #region Methods
     private void Start()
     {
-        _rigidBody = GetComponent<Rigidbody>();
-        if (_rigidBody == null)
-        {
-            Debug.LogError("No Component RigidBody found!");
-            return;
-        }
-
         StartCoroutine(LifeTimeCoroutine());
     }
 
     public void AddForce(Vector3 force, ForceMode mode)
     {
-        _rigidBody.AddForce(force, mode);
+        GetComponent<Rigidbody>().AddForce(force, mode);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -43,6 +36,7 @@ public class Projectile : MonoBehaviour
         }
 
         obstacle.Kill();
+        Destroy(gameObject);
     }
 
     private IEnumerator LifeTimeCoroutine()

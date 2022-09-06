@@ -17,6 +17,9 @@ public class DefeatPanel : MonoBehaviour
     [Space]
     [SerializeField] private float _allowedTime = 5f;
 
+    [Space]
+    [SerializeField] private ScoreManager _scoreManager = null;
+
     private bool _allowTimeUpdate = false;
     private float _elapsed = 0f;
     private Image _restartImage = null;
@@ -63,11 +66,18 @@ public class DefeatPanel : MonoBehaviour
         }
     }
 
-    public void ShowHighScore(int value)
+    public void CheckHighScore()
     {
-        _highScoreText.gameObject.SetActive(true);
+        if (_scoreManager.HasNewHighScore)
+        {
+            _highScoreText.gameObject.SetActive(true);
 
-        _highScoreText.text = string.Format(_highScoreFormat, value);
+            _highScoreText.text = string.Format(_highScoreFormat, _scoreManager.HighScore);
+        }
+        else
+        {
+            _highScoreText.gameObject.SetActive(false);
+        }
     }
     #endregion
 }

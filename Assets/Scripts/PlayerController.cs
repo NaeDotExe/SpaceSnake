@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 pos = new Vector3(_xPosition, transform.position.y, transform.position.z + _currentSpeed * Time.deltaTime);
 
-        transform.position  = pos;
+        transform.position = pos;
     }
 
     public void IncrementSpeed()
@@ -58,6 +58,10 @@ public class PlayerController : MonoBehaviour
     public void DecreaseSpeed(float divider)
     {
         _currentSpeed /= divider;
+        if (_currentSpeed < _startSpeed)
+        {
+            _currentSpeed = _startSpeed;
+        }
     }
     public void Stop()
     {
