@@ -28,7 +28,7 @@ public class CameraController : MonoBehaviour
             return;
         }
 
-        Vector3 pos = new Vector3(transform.position.x + _offset.x, transform.position.y + _offset.y, _target.position.z + _offset.z);
+        Vector3 pos = new Vector3(transform.position.x + _offset.x, transform.position.y, _target.position.z + _offset.z);
 
         transform.position = pos;
     }
@@ -42,7 +42,7 @@ public class CameraController : MonoBehaviour
                 return;
             }
 
-            Vector3 pos = new Vector3(transform.position.x, _target.position.y + _offset.y, _target.position.z + _offset.z);
+            Vector3 pos = new Vector3(transform.position.x, transform.position.y, _target.position.z + _offset.z);
 
             transform.position = pos;
         }

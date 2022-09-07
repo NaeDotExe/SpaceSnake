@@ -19,6 +19,11 @@ public class Platform : MonoBehaviour
     }
     public void ShowObstacles()
     {
+        if (_obstacles.Count == 0)
+        {
+            return;
+        }
+
         StartCoroutine(ShowObstaclesCoroutine());
     }
 

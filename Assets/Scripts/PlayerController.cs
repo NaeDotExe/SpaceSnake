@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     [Space]
     [SerializeField] private HUB _hub = null;
 
-    private bool _isMovementAllowed = true;
+    private bool _isMovementAllowed = false;
     private float _currentSpeed = 0f;
     private float _xPosition = 0f;
     #endregion

@@ -9,6 +9,7 @@ TagManager:
   - Platform
   - Obstacle
   - Projectile
+  - PlayerKillZone
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - KillZone
   - Projectile
   - Obstacle
-  - 
+  - PlayerKillZone
   - 
   - 
   - 

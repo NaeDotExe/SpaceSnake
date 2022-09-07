@@ -11,15 +11,17 @@ public class GameManager : MonoBehaviour
 
     #region Events
     public UnityEvent OnGameStart = new UnityEvent();
-    public UnityEvent OnGamePause = new UnityEvent();
-    public UnityEvent OnGameResume = new UnityEvent();
     public UnityEvent OnGameRestart = new UnityEvent();
     public UnityEvent OnGameEnd = new UnityEvent();
+
+    public UnityEvent OnObstacleDestroyed = new UnityEvent();
     #endregion
 
     #region Methods
     private void Start()
     {
+        //Application.targetFrameRate = 60;
+
         if (_player == null)
         {
             Debug.LogError("Player is null!");
@@ -33,18 +35,6 @@ public class GameManager : MonoBehaviour
     {
         OnGameStart.Invoke();
     }
-    public void GamePause()
-    {
-        Time.timeScale = 0;
-
-        OnGamePause.Invoke();
-    }
-    public void ResumeGame()
-    {
-        Time.timeScale = 1;
-
-        OnGameResume.Invoke();
-    }
     public void GameRestart()
     {
         OnGameRestart.Invoke();
@@ -52,6 +42,12 @@ public class GameManager : MonoBehaviour
     public void GameEnd()
     {
         OnGameEnd.Invoke();
+    }
+ 
+    public void ObstacleDestroyed()
+    {
+        // to clean
+        //OnObstacleDestroyed.Invoke();
     }
     #endregion
 }

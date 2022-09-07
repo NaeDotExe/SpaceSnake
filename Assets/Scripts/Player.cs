@@ -16,6 +16,13 @@ public class Player : MonoBehaviour
     [SerializeField] private float _shootForce = 20.0f;
     [SerializeField] private Projectile _projectile = null;
 
+    [Space, Header("SFX")]
+    [SerializeField] private AudioSource _source = null;
+    [SerializeField] private AudioClip _audioDeath = null;
+    [SerializeField] private AudioClip _collectiblePicked = null;
+    [SerializeField] private AudioClip _bonusObstacle = null;
+    [SerializeField] private AudioClip _shootAudio = null;
+
     private int _ammoCount = 0;
     private bool _isDead = false;
     private bool _allowBodyUpdate = false;
@@ -38,6 +45,7 @@ public class Player : MonoBehaviour
     public UnityEvent<int> OnUpdateAmmo = new UnityEvent<int>();
     public UnityEvent OnDeath = new UnityEvent();
     public UnityEvent OnCollectiblePicked = new UnityEvent();
+    public UnityEvent OnShoot = new UnityEvent();
     #endregion
 
     #region Methods
@@ -61,6 +69,11 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.Space))
+            ShootProjectile();
+#endif
+
         return;
 
         if (_allowBodyUpdate)
@@ -82,8 +95,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Kill()
+    public void Kill()
     {
+        GetComponent<Collider>().enabled = false;
+
+        _source.PlayOneShot(_audioDeath);
         _playerController.Stop();
         OnDeath.Invoke();
     }
@@ -115,11 +131,13 @@ public class Player : MonoBehaviour
         AddTailElement();
 
         _particleSystem.Play();
+        _source.PlayOneShot(_collectiblePicked);
 
         OnCollectiblePicked.Invoke();
     }
     public void BonusObstacleDestroyed()
     {
+        _source.PlayOneShot(_bonusObstacle);
         _playerController.DecreaseSpeed(2f);
     }
 
@@ -145,6 +163,9 @@ public class Player : MonoBehaviour
             return;
         }
 
+        OnShoot.Invoke();
+
+        _source.PlayOneShot(_shootAudio);
         projectile.AddForce(transform.forward * _shootForce, ForceMode.Impulse);
     }
 

@@ -21,6 +21,11 @@ public class AmbientAudio : MonoBehaviour
         }
     }
 
+    public void ToggleVolume(bool isOn)
+    {
+        _source.volume = isOn ? 1 : 0;
+    }
+
     public void SetPitch(float pitch)
     {
         _source.pitch = pitch;

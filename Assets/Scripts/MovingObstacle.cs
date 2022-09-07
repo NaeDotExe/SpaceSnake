@@ -12,20 +12,20 @@ public class MovingObstacle : Obstacle
     [SerializeField] private float _minX = -2f;
     [SerializeField] private float _maxX = 2f;
 
-    private bool _allowMovement = false;
+    //private bool _allowMovement = false;
     private bool _moveRight = true;
     #endregion
 
     #region Methods
     private void Start()
     {
-        _allowMovement = true;
+        //_allowMovement = true;
         _moveRight = _startMoveRight;
     }
     private void Update()
     {
-        if (_allowMovement)
-        {
+        //if (_allowMovement)
+        //{
             if (_moveRight)
             {
                 Vector3 pos = transform.position;
@@ -53,7 +53,7 @@ public class MovingObstacle : Obstacle
                     }
                 }
             }
-        }
+        //}
     }
     public override void Kill()
     {

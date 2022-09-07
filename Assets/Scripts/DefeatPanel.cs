@@ -23,6 +23,7 @@ public class DefeatPanel : MonoBehaviour
     private bool _allowTimeUpdate = false;
     private float _elapsed = 0f;
     private Image _restartImage = null;
+    private CanvasGroup _canvasGroup = null;
     #endregion
 
     #region Properties
@@ -38,13 +39,22 @@ public class DefeatPanel : MonoBehaviour
     #endregion
 
     #region Methods
+    private void Awake()
+    {
+        _canvasGroup = GetComponent<CanvasGroup>();
+        if (_canvasGroup == null)
+        {
+            Debug.LogError("No Component CanvasGroup found.");
+            return;
+        }
+    }
     private void Start()
     {
         _restartImage = _button.image;
 
         _restartImage.fillAmount = 1;
 
-        //_button.onClick.AddListener(OnTimerEnded.Invoke);
+        _button.onClick.AddListener(OnTimerEnded.Invoke);
     }
     private void Update()
     {
@@ -78,6 +88,11 @@ public class DefeatPanel : MonoBehaviour
         {
             _highScoreText.gameObject.SetActive(false);
         }
+    }
+
+    public void Show(bool show)
+    {
+        _canvasGroup.alpha = show ? 1 : 0;
     }
     #endregion
 }

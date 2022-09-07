@@ -19,6 +19,8 @@ public class HUB : MonoBehaviour
 
     [Space]
     [SerializeField] private ScoreManager _scoreManager = null;
+
+    private CanvasGroup _canvasGroup = null;
     #endregion
 
     #region Events
@@ -26,6 +28,15 @@ public class HUB : MonoBehaviour
     #endregion
 
     #region Methods
+    private void Awake()
+    {
+        _canvasGroup = GetComponent<CanvasGroup>();
+        if (_canvasGroup == null)
+        {
+            Debug.LogError("No Component CanvasGroup found.");
+            return;
+        }
+    }
     private void Start()
     {
         if (_scoreText == null)
@@ -34,7 +45,16 @@ public class HUB : MonoBehaviour
             return;
         }
 
+        Init();
+    }
+
+    public void Init()
+    {
         _slider.onValueChanged.AddListener(SliderUpdate);
+    }
+    public void Show(bool show)
+    {
+        _canvasGroup.alpha = show ? 1 : 0;
     }
 
     private void SliderUpdate(float value)
