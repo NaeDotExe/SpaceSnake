@@ -8,8 +8,6 @@ public class CanvasStart : MonoBehaviour
 {
     #region Attributes
     [SerializeField] private Button _moveToNext = null;
-    [SerializeField] private GameObject _title = null;
-    [SerializeField] private GameObject _tuto = null;
     
     [Space]
     [SerializeField] private Button _options = null;

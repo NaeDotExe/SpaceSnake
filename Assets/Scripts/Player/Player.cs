@@ -6,13 +6,6 @@ using UnityEngine.Events;
 public class Player : MonoBehaviour
 {
     #region Attributes
-    [SerializeField] private float _distance = 0.5f;
-    [SerializeField] private float _bodyDelay = 0.5f;
-    [SerializeField] private Transform _bodyTr = null;
-    [SerializeField] private GameObject _head = null;
-    [SerializeField] private GameObject _tailElement = null;
-
-    [Space]
     [SerializeField] private float _shootForce = 20.0f;
     [SerializeField] private Projectile _projectile = null;
 
@@ -24,12 +17,9 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip _shootAudio = null;
 
     private int _ammoCount = 0;
-    private bool _isDead = false;
     private bool _allowBodyUpdate = false;
-    private float _moveSpeed = 10f;
     private ParticleSystem _particleSystem = null;
     private PlayerController _playerController = null;
-    private List<GameObject> _body = new List<GameObject>();
     #endregion
 
     #region Properties
@@ -64,35 +54,15 @@ public class Player : MonoBehaviour
             Debug.LogError("No Component ParticleSystem found.");
             return;
         }
-
-        _body.Add(_head);
     }
     private void Update()
     {
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Space))
+        {
             ShootProjectile();
-#endif
-
-        return;
-
-        if (_allowBodyUpdate)
-        {
-            BodyUpdate();
         }
-
-        // to remove later
-        if (Input.GetKeyDown(KeyCode.B))
-            AddTailElement();
-    }
-
-    private void BodyUpdate()
-    {
-        for (int i = 1; i < _body.Count; ++i)
-        {
-            // test 2
-            _body[i].transform.position = Vector3.Slerp(_body[i - 1].transform.position, _body[i].transform.position, _bodyDelay * Time.deltaTime);
-        }
+        #endif
     }
 
     public void Kill()
@@ -103,23 +73,6 @@ public class Player : MonoBehaviour
         _playerController.Stop();
         OnDeath.Invoke();
     }
-    private void AddTailElement()
-    {
-        return;
-
-        Vector3 pos = new Vector3(transform.position.x, transform.position.y, _body[_body.Count - 1].transform.position.z - _distance);
-
-        GameObject element = Instantiate(_tailElement, pos, Quaternion.identity);
-        if (element == null)
-        {
-            Debug.LogError("Failed to instantiate element.");
-            return;
-        }
-
-        element.transform.SetParent(_bodyTr);
-
-        _body.Add(element);
-    }
 
     private void CollectiblePicked()
     {
@@ -128,17 +81,16 @@ public class Player : MonoBehaviour
         OnUpdateAmmo.Invoke(_ammoCount);
 
         _playerController.IncrementSpeed();
-        AddTailElement();
 
         _particleSystem.Play();
         _source.PlayOneShot(_collectiblePicked);
 
         OnCollectiblePicked.Invoke();
     }
-    public void BonusObstacleDestroyed()
+    public void BonusObstacleDestroyed(float divider)
     {
         _source.PlayOneShot(_bonusObstacle);
-        _playerController.DecreaseSpeed(2f);
+        _playerController.DecreaseSpeed(divider);
     }
 
     public void ShootProjectile()

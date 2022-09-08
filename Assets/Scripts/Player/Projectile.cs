@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Projectile : MonoBehaviour
 {
     #region Attributes
     [SerializeField] private float _lifeTime = 3.0f;
-
-    private Rigidbody _rigidBody = null;
     #endregion
 
     #region Methods

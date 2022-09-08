@@ -143,7 +143,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Touchez et glissez pour contr\xF4ler\\n\\nTirez lorsque vous avez assez
-    de munitions pour d\xE9truire les obstacles !"
+    de munitions pour d\xE9truire les obstacles !\\n\\nTip: d\xE9truire les blocs
+    verts vous permet de ralentir !"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c64a3460b7e9f944580142e6acef1695, type: 2}
   m_sharedMaterial: {fileID: -5347166704814888280, guid: c64a3460b7e9f944580142e6acef1695, type: 2}
@@ -1871,8 +1872,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveToNext: {fileID: 5781739816764679483}
-  _title: {fileID: 3405203932477751196}
-  _tuto: {fileID: 2216762928656620355}
   _options: {fileID: 2353608487628975416}
   _settingsSubPanel: {fileID: 9092908730113886815}
   OnMenuButtonClicked:
@@ -2329,7 +2328,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Tirez lorsque vous avez assez de munitions pour d\xE9truire les obstacles
-    !"
+    !\nTip : d\xE9truire les blocs verts vous permet de ralentir !"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 556845f33b9378e43945076326aa1e2a, type: 2}
   m_sharedMaterial: {fileID: -7826334469169058042, guid: 556845f33b9378e43945076326aa1e2a, type: 2}

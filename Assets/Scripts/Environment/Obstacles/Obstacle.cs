@@ -11,7 +11,6 @@ public class Obstacle : MonoBehaviour
     #region Methods
     public void Spawn()
     {
-        // play anim
     }
     public virtual void Kill()
     {
@@ -20,9 +19,6 @@ public class Obstacle : MonoBehaviour
     private IEnumerator KillCoroutine()
     {
         _system.Play();
-
-        // to clean
-        //FindObjectOfType<GameManager>().ObstacleDestroyed();
 
         yield return new WaitForSeconds(0.1f);
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Platform : MonoBehaviour
 {
     #region Attributes
-    [SerializeField] private float _delayBeforeSpawningObstacles = 0.5f;
+    //[SerializeField] private float _delayBeforeSpawningObstacles = 0.5f;
     [SerializeField] private List<Obstacle> _obstacles = new List<Obstacle>();
     #endregion
 

@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class PlatformColorLerp : MonoBehaviour
 {
+    #region Attributes
     [SerializeField] private float _duration = 1.0f;
     [SerializeField] private Material _material = null;
+
     [ColorUsage(true, true)]
     [SerializeField] private List<Color> _colors = new List<Color>();
 
@@ -14,7 +16,9 @@ public class PlatformColorLerp : MonoBehaviour
     private int _currentId = 0;
     private Color _currentColor = Color.white;
     private Color _targetColor = Color.white;
+    #endregion
 
+    #region Methods
     private void Start()
     {
         _time = 0f;
@@ -75,4 +79,5 @@ public class PlatformColorLerp : MonoBehaviour
 
         _canLerp = true;
     }
+    #endregion
 }

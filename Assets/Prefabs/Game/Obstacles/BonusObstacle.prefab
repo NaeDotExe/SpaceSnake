@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _system: {fileID: 5653658626827838322}
-  _speedDivider: 2
+  _speedDivider: 1.5
 --- !u!198 &5653658626827838322
 ParticleSystem:
   m_ObjectHideFlags: 0

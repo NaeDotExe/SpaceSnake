@@ -1645,21 +1645,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-  OnObstacleDestroyed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 963194231}
-        m_TargetAssemblyTypeName: CameraShake, Assembly-CSharp
-        m_MethodName: Shake
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0.05
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &2081176349 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1461871526030818033, guid: ca6c88d26e30e724aba0a0a9e6074cdb, type: 3}
@@ -1792,6 +1777,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2814532807590853446, guid: e70fe8675006b494598749fe5a0b3026, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814532807590853446, guid: e70fe8675006b494598749fe5a0b3026, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2814532808152761505, guid: e70fe8675006b494598749fe5a0b3026, type: 3}
       propertyPath: m_Name
       value: Canvas_HUB
@@ -1888,6 +1881,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 7993084081706325484}
+    - target: {fileID: 2814532808508848816, guid: e70fe8675006b494598749fe5a0b3026, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814532808508848816, guid: e70fe8675006b494598749fe5a0b3026, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814532808508848816, guid: e70fe8675006b494598749fe5a0b3026, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e70fe8675006b494598749fe5a0b3026, type: 3}
 --- !u!225 &2814532808611814507 stripped
@@ -2051,6 +2056,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas_FPSCounter
       objectReference: {fileID: 0}
+    - target: {fileID: 4064162530847350868, guid: ef2bcae41e3324447aa145588349aa20, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef2bcae41e3324447aa145588349aa20, type: 3}
 --- !u!1001 &4098724375891543991
@@ -2133,6 +2142,10 @@ PrefabInstance:
       propertyPath: OnShoot.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 963194231}
+    - target: {fileID: 7993084083170793161, guid: fa6131dbd30f05c4599a34a02650ccb2, type: 3}
+      propertyPath: OnShoot.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7993084083170793161, guid: fa6131dbd30f05c4599a34a02650ccb2, type: 3}
       propertyPath: OnUpdateAmmo.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

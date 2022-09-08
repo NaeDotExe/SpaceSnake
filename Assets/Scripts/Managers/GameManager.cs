@@ -13,14 +13,12 @@ public class GameManager : MonoBehaviour
     public UnityEvent OnGameStart = new UnityEvent();
     public UnityEvent OnGameRestart = new UnityEvent();
     public UnityEvent OnGameEnd = new UnityEvent();
-
-    public UnityEvent OnObstacleDestroyed = new UnityEvent();
     #endregion
 
     #region Methods
     private void Start()
     {
-        //Application.targetFrameRate = 60;
+        Application.targetFrameRate = 60;
 
         if (_player == null)
         {
@@ -42,12 +40,6 @@ public class GameManager : MonoBehaviour
     public void GameEnd()
     {
         OnGameEnd.Invoke();
-    }
- 
-    public void ObstacleDestroyed()
-    {
-        // to clean
-        //OnObstacleDestroyed.Invoke();
     }
     #endregion
 }

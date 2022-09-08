@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
+    #region Attributes
     [SerializeField] private float _defaultDuration = 0.4f;
-    [SerializeField] private float _magnitude = 0.4f;
+    [SerializeField] private float _defaultMagnitude = 0.4f;
 
     private Vector3 _startPos = Vector3.zero;
+    #endregion
 
+    #region Methods
     private void Start()
     {
         _startPos = transform.localPosition;
     }
 
+    public void Shake()
+    {
+        Shake(_defaultDuration, _defaultMagnitude);
+    }
     public void Shake(float magnitude)
     {
         Shake(_defaultDuration, magnitude);
@@ -41,4 +48,5 @@ public class CameraShake : MonoBehaviour
 
         transform.localPosition = _startPos;
     }
+    #endregion
 }
